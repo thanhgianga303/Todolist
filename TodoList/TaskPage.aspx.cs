@@ -31,7 +31,16 @@ namespace TodoList
         protected void bind()
         {
             string StaffId = Convert.ToString(Session["id"]);
-            List<Task> taskList = taskBll.getAllTaskByStaffId(Int32.Parse(StaffId));
+            string role = Convert.ToString(Session["role"]);
+            List<Task> taskList = null;
+            if (role == "admin")
+            {
+                taskList = taskBll.getAllTask();
+            }
+            else
+            {
+                taskList = taskBll.getAllTaskByStaffId(Int32.Parse(StaffId));
+            }
             GridViewTask.DataSource = taskList;
             GridViewTask.DataBind();
 
