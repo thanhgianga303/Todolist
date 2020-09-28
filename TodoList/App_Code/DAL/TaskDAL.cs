@@ -51,7 +51,8 @@ namespace TodoList.App_Code.DAL
                             from tb_task
                             where task_id in (select task_id
                                               from tb_taskdetails
-                                              where staff_id=@staff_id)";
+                                              where staff_id=@staff_id)
+                            or task_public=1";
 
             
             DAL.connectDB();
