@@ -105,7 +105,7 @@
             <asp:Label ID="Label1" runat="server" Text="Files:"></asp:Label>
             <asp:FileUpload ID="FileUpload1" runat="server" />
             <asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click"  Text="Upload" />
-          </div>
+           </div>
               
             </div>
     

@@ -23,9 +23,20 @@ namespace TodoList
         }
         protected void bind()
         {
-
-            List<Staff> listNhanVien = staffBll.getAllStaff();
-            GridViewEmployee.DataSource = listNhanVien;
+            string role = Convert.ToString(Session["role"]);
+            string StaffId = Convert.ToString(Session["id"]);
+            List<Staff> staffList = new List<Staff>();
+            if (role == "admin")
+            {
+                staffList = staffBll.getAllStaff();
+            }
+            else
+            {
+                Staff staff = staffBll.getStaff(Convert.ToInt32(StaffId));
+                staffList.Add(staff);
+            }
+           
+            GridViewEmployee.DataSource = staffList;
             GridViewEmployee.DataBind();
         }
         protected void Insert_Click(object sender, EventArgs e)
@@ -47,14 +58,17 @@ namespace TodoList
 
         protected void GridViewEmployee_DeleteRow(object sender, GridViewDeleteEventArgs e)
         {
-            GridViewRow row = (GridViewRow) GridViewEmployee.Rows[e.RowIndex];
-            TableCell Cell=(TableCell) row.Cells[0];
+            if (Session["role"].Equals("admin"))
+                {
+                GridViewRow row = (GridViewRow)GridViewEmployee.Rows[e.RowIndex];
+                TableCell Cell = (TableCell)row.Cells[0];
 
-            Staff staff = staffBll.getStaff(Int32.Parse(Cell.Text));
+                Staff staff = staffBll.getStaff(Int32.Parse(Cell.Text));
 
-            staffBll.Delete(staff);
+                staffBll.Delete(staff);
 
-            bind();
+                bind();
+            }
         }
         protected void GridViewEmployee_RowEditing(object sender, GridViewEditEventArgs e)
         {

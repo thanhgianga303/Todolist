@@ -79,9 +79,7 @@
                     <asp:Label ID="Label1" runat="server" Text="Files:"></asp:Label>
                 </div>
                 <div class="row">
-                    
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
-                    <asp:Button  ID="btnUpload" runat="server"  Text="Upload" />
+                    <asp:HyperLink Text="Download" ID="attachedFile" runat="server" />
                 </div>
             </div>  
             <div class="row">

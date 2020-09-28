@@ -105,9 +105,13 @@ namespace TodoList.App_Code.DAL
         public static void Delete(Staff staff)
         {
             DAL.connectDB();
-
-            string sql = "Delete tb_staff where staff_id= @staff_id";
+            string sql = "Delete tb_taskdetails where staff_id= @staff_id";
             SqlCommand cmd = new SqlCommand(sql, DAL.con);
+            cmd.Parameters.AddWithValue("@staff_id", staff.Id);
+            cmd.ExecuteNonQuery();
+
+            sql = "Delete tb_staff where staff_id= @staff_id";
+            cmd = new SqlCommand(sql, DAL.con);
             cmd.Parameters.AddWithValue("@staff_id", staff.Id);
 
             cmd.ExecuteNonQuery();

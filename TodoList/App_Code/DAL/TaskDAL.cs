@@ -100,8 +100,10 @@ namespace TodoList.App_Code.DAL
             cmd.Parameters.AddWithValue("@task_enddate", task.EndDate);
             cmd.Parameters.AddWithValue("@task_public", task.Public);
             cmd.Parameters.AddWithValue("@task_status", task.Status);
-            cmd.Parameters.AddWithValue("@task_files", task.Files);
-
+            if (task.Files!= null)
+            {
+                cmd.Parameters.AddWithValue("@task_files", task.Files);
+            }
             Int32 lastestId = (Int32)cmd.ExecuteScalar();
             for (int i = 0; i < staffList.Count; i++)
             {

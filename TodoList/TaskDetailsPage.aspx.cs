@@ -50,6 +50,8 @@ namespace TodoList
             {
                 checkboxIsPrivate.Checked = true;
             }
+            attachedFile.Text = task.Files;
+            attachedFile.NavigateUrl = "~" + task.Files;
             ListDropDown.SelectedValue = task.Status;
 
             bindPartner();
@@ -96,8 +98,6 @@ namespace TodoList
                 isPublic = false;
             }
 
-            string files = FileUpload1.FileName;
-
             List<int> arr = new List<int>();
             foreach (GridViewRow row in GridViewPartner.Rows)
             {
@@ -109,9 +109,9 @@ namespace TodoList
                 }
             }
             int ownerId = Convert.ToInt32(Session["id"].ToString());
-            Task task = new Task(taskId,title, startDate, endDate, isPublic, status, files);
+            Task newTask = new Task(taskId,title, startDate, endDate, isPublic, status, task.Files);
 
-            taskBll.Update(task, arr);
+            taskBll.Update(newTask, arr);
 
             Response.Redirect("/TaskPage.aspx");
             

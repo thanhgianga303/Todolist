@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -50,17 +51,11 @@ namespace TodoList
         }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
-            try
+            if (Page.IsValid && FileUpload1.HasFile)
             {
-                string sFolderPath = Server.MapPath(@"App_data");
-                HttpPostedFile myFile = FileUpload1.PostedFile;
-                string sFileName = myFile.FileName;
-                myFile.SaveAs(
-                    string.Format(@"{0}\{1}", sFolderPath, sFileName));
-            }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
+                string fileName = "Upload/" + FileUpload1.FileName;
+                string filePath = MapPath(fileName);
+                FileUpload1.SaveAs(filePath);
             }
         }
 
@@ -76,7 +71,22 @@ namespace TodoList
             {
                 isPublic = false;
             }
-            string files = FileUpload1.FileName;
+         
+            string urlFile = null;
+
+            if (FileUpload1.HasFile)
+            {
+                try
+                {
+                    string fileName = Path.GetFileName(FileUpload1.FileName);
+                    FileUpload1.SaveAs(Server.MapPath("~") + "/Upload/" + fileName);
+                    urlFile = "/Upload/" + fileName;
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
             List<int> arr = new List<int>();
             foreach (GridViewRow row in GridViewPartner.Rows)
             {
@@ -88,7 +98,7 @@ namespace TodoList
                 }
             }
             int ownerId = Convert.ToInt32(Session["id"].ToString());
-            Task task = new Task(title,startDate,endDate, isPublic, status,files);
+            Task task = new Task(title,startDate,endDate, isPublic, status,urlFile);
 
             taskBll.Insert(task, arr, ownerId);
             bind();

@@ -43,15 +43,17 @@
                         <asp:BoundField ControlStyle-CssClass="inputText" DataField="Role" HeaderText="staff_role" SortExpression="staff_role" >
 <ControlStyle CssClass="inputText"></ControlStyle>
                         </asp:BoundField>
+                        
                         <asp:CommandField ControlStyle-CssClass="styleButton" ButtonType="Button" ShowDeleteButton="True"/>
-                       </Columns>
+                           
+                    </Columns>
                 </asp:GridView>
              </div>
             <div class="col-md-2"> 
-                
+                <% if (Session["role"].Equals("admin")){ %>
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                   Add new staff</button>
-
+                <%} %>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
