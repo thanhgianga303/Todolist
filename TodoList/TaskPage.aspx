@@ -2,38 +2,50 @@
 
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container">
-    <div class="row" style="text-align:center">
-        <div class="col-md-12">
-            <h1>Task list for <%:Session["name"] %></h1>
+    <div class="row">
+            <div class="col-md-10">
+                <h1>Staff Table</h1>
+            </div>
+            <div class="col-md-2" style="text-align:center">
+                <h1>Add Staff</h1> 
+            </div>
         </div>
-    </div>
-    <div class="row card">
-        <div class="col-md-9">
+        <div>
+            <div class="col-md-12">
+                <hr style="color:deepskyblue"/>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-10 card">
             <asp:GridView ID="GridViewTask"
                                 runat="server"
-                                CssClass="table table-condensed table-hover"
+                                CssClass="table table-condensed"
                                 OnRowDeleting="GridViewTask_RowDeleting"                       
                                 OnRowEditing="GridViewTask_RowEditing"
                                 OnRowCancelingEdit="GridViewTask_RowCancelingEdit" AutoGenerateColumns="False" 
                                                  >
             <Columns>
-                <asp:BoundField DataField="Id" HeaderText="task_id" InsertVisible="False" ReadOnly="True" SortExpression="task_id" />
-                <asp:TemplateField>
+                <asp:BoundField DataField="Id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="task_id" />
+                <asp:TemplateField HeaderText="Title" SortExpression="asdas">
                     <ItemTemplate>
                         <a href="/TaskDetailsPage.aspx?id=<%#Eval("Id") %>"><%#Eval("Title")%> </a>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="StartDate" HeaderText="task_startdate" SortExpression="task_startdate" />
-                <asp:BoundField DataField="EndDate" HeaderText="task_enddate" SortExpression="task_enddate" />
-                <asp:BoundField DataField="Public" HeaderText="task_public" SortExpression="task_public" />
-                <asp:BoundField DataField="Status" HeaderText="task_status" SortExpression="task_status" />
-                <asp:BoundField DataField="Files" HeaderText="task_files" SortExpression="task_files" />
+                <asp:BoundField DataField="StartDate" HeaderText="Start Date" SortExpression="task_startdate" />
+                <asp:BoundField DataField="EndDate" HeaderText="End Date" SortExpression="task_enddate" />
+                <asp:BoundField DataField="Public" HeaderText="Public" SortExpression="task_public" />
+                <asp:TemplateField HeaderText="Status">
+                    <ItemTemplate>
+                        <asp:Label CssClass='<%# Eval("status").Equals("Prepare") ? "label label-primary" : (Eval("status").Equals("Doing") ? "label label-danger" : "label label-success") %>' ID="Label4" runat="server" Text='<%# Eval("Status") %>'></asp:Label> 
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:BoundField DataField="Files" HeaderText="Files" SortExpression="task_files" />
                 <asp:CommandField ButtonType="Button" ControlStyle-CssClass="btn btn-primary styleButton" HeaderText="Actions" ShowDeleteButton="True"/>
             </Columns>
             </asp:GridView>
 
         </div>
-        <div class="col-md-3" style="text-align:center">
+        <div class="col-md-2" style="text-align:center">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
             Add new task
             </button>
@@ -104,7 +116,6 @@
           <div class="form-group">
             <asp:Label ID="Label1" runat="server" Text="Files:"></asp:Label>
             <asp:FileUpload ID="FileUpload1" runat="server" />
-            <asp:Button ID="btnUpload" runat="server" onclick="btnUpload_Click"  Text="Upload" />
            </div>
               
             </div>

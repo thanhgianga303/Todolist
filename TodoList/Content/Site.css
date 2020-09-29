@@ -66,6 +66,15 @@ input[type="select"] {
     background-color: #28a745 !important;
     border-color: #28a745 !important;
 }
+styleButtonDetails{
+    display: flex !important;
+    justify-content: center;
+    padding: 5px 10px !important;
+    margin: 10px 20px 0px !important;
+    color: #fff !important;
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
 .styleButtonCancel{
     width: 95px;
     display: flex !important;

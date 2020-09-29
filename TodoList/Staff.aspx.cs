@@ -16,6 +16,15 @@ namespace TodoList
         private StaffBLL staffBll = new StaffBLL();
         protected void Page_Load(object sender, EventArgs e)
         {
+            string role = Convert.ToString(Session["role"]);
+            if(String.IsNullOrEmpty(role))
+            {
+                Response.Redirect("~/Login.aspx");
+            }
+            if (role.Equals("staff"))
+            {
+                Response.Redirect("~/AccessDenied.aspx");
+            }
             if (!IsPostBack)
             {
                 bind();
@@ -26,16 +35,7 @@ namespace TodoList
             string role = Convert.ToString(Session["role"]);
             string StaffId = Convert.ToString(Session["id"]);
             List<Staff> staffList = new List<Staff>();
-            if (role == "admin")
-            {
-                staffList = staffBll.getAllStaff();
-            }
-            else
-            {
-                Staff staff = staffBll.getStaff(Convert.ToInt32(StaffId));
-                staffList.Add(staff);
-            }
-           
+            staffList = staffBll.getAllStaff();
             GridViewEmployee.DataSource = staffList;
             GridViewEmployee.DataBind();
         }

@@ -17,7 +17,11 @@ namespace TodoList
         public string Notification = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            string id = Convert.ToString(Session["id"]);
+           if(!String.IsNullOrEmpty(id))
+            {
+                Response.Redirect("~/TaskPage.aspx");
+            }
         }
         protected void checkLogin(object sender, EventArgs e)
         {
@@ -35,7 +39,7 @@ namespace TodoList
             }
             else
             {
-                Response.Redirect("/");
+                lbError.Text = "Error username or password";
             }
             Notification = "Login success";
             this.DataBind();

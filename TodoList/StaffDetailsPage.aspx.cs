@@ -62,7 +62,13 @@ namespace TodoList
         }
         protected void Canceling_Click(object sender, EventArgs e)
         {
+            Response.Redirect("/Staff.aspx");
+        }
 
+        protected void SeeTaskList_Click(object sender, EventArgs e)
+        {
+        //    string id = Request.QueryString["Id"];
+          //  Response.Redirect("/TaskDetailsPage.aspx?id=" + id);
         }
     }
 }

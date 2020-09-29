@@ -266,6 +266,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="AccessDenied.aspx" />
+    <Content Include="AccountPage.aspx" />
     <Content Include="App_Data\todolist.mdf" />
     <Content Include="App_Data\todolist_log.ldf">
       <DependentUpon>todolist.mdf</DependentUpon>
@@ -403,6 +405,20 @@
     <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccountPage.aspx.cs">
+      <DependentUpon>AccountPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccountPage.aspx.designer.cs">
+      <DependentUpon>AccountPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\BLL\StaffBLL.cs" />
     <Compile Include="App_Code\BLL\TaskBLL.cs" />
     <Compile Include="App_Code\DAL\DAL.cs" />

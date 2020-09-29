@@ -2,10 +2,10 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <h1>Staff Table</h1>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2" style="text-align:center">
                 <h1>Add Staff</h1> 
             </div>
         </div>
@@ -14,11 +14,11 @@
                 <hr style="color:deepskyblue"/>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-md-10">
+        <div class="row"  >
+            <div class="col-md-10 card">
                 <asp:GridView ID="GridViewEmployee"
                         runat="server"
-                        CssClass="table table-condensed table-hover"
+                        CssClass="table table-condensed"
                         Width="50%"
                         OnRowDeleting="GridViewEmployee_DeleteRow"
                         AutoGenerateColumns="False">
@@ -49,11 +49,9 @@
                     </Columns>
                 </asp:GridView>
              </div>
-            <div class="col-md-2"> 
-                <% if (Session["role"].Equals("admin")){ %>
+            <div class="col-md-2" style="text-align:center"> 
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
                   Add new staff</button>
-                <%} %>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">

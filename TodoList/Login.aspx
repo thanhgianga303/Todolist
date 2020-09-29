@@ -17,13 +17,18 @@
 
                 <!-- Login Form -->
                   <asp:TextBox ID="tbUsername" cssClass="fadeIn third" runat="server"></asp:TextBox>
-                  
+                  <div>
+                      <asp:RequiredFieldValidator CssClass="text-danger" ErrorMessage="Username is required" ControlToValidate="tbUsername" runat="server" />
+                   </div>                             
                   <asp:TextBox ID="tbPassword" TextMode="Password" cssClass="fadeIn third" runat="server"></asp:TextBox>
-                  
-                  <asp:Button cssClass="fadeIn fourth" Text="Log In" OnClick="checkLogin" runat="server"/>
-                <!-- Remind Passowrd -->
+                  <div>
+                    <asp:RequiredFieldValidator CssClass="text-danger" ErrorMessage="Password is required" ControlToValidate="tbPassword" runat="server" />
+                  </div>
+                   <asp:Button cssClass="fadeIn fourth" Text="Log In" OnClick="checkLogin" runat="server"/>
+                                    
+                      <!-- Remind Passowrd -->
                 <div id="formFooter" runat="server">
-                  <asp:Label CssClass="label label-danger"  runat="server" />
+                  <asp:Label ID="lbError" CssClass="label label-danger"  runat="server" />
                 </div>
 
               </div>
